@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EmojiLayout">
+        <attr name="row" format="integer" />
+        <attr name="column" format="integer" />
+        <attr name="emoji_spacing" format="dimension" />
+        <attr name="dot_normal" format="reference" />
+        <attr name="dot_select" format="reference" />
+        <attr name="emoji_size" format="dimension" />
+        <attr name="dot_spacing" format="dimension" />
+    </declare-styleable>
+</resources>
