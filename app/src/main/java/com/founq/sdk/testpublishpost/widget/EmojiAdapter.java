@@ -25,6 +25,8 @@ public class EmojiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private final static int TYPE_DELETE = 1;
 
     private Context mContext;
+
+    private EmojiCallback mEmojiCallback;
     //emoji文字显示大小
     private float textSize = 25;
 
@@ -48,6 +50,10 @@ public class EmojiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         } else {
             count = (mEmojiList.size() / column + 1) * column;
         }
+    }
+
+    public void setEmojiCallback(EmojiCallback emojiCallback) {
+        mEmojiCallback = emojiCallback;
     }
 
     public void setTextSize(float textSize) {
@@ -90,7 +96,7 @@ public class EmojiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof EmojiViewHolder) {
-            EmojiViewHolder viewHolder = (EmojiViewHolder) holder;
+            final EmojiViewHolder viewHolder = (EmojiViewHolder) holder;
             if (position < mEmojiList.size()) {
                 viewHolder.mEmojiText.setText(mEmojiList.get(position));
             } else {
@@ -99,7 +105,9 @@ public class EmojiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             viewHolder.mEmojiText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO:添加点击事件的回调
+                    if (mEmojiCallback!= null) {
+                        mEmojiCallback.onEmojiClick(viewHolder.mEmojiText.getText().toString());
+                    }
                 }
             });
         } else if (holder instanceof DeleteViewHolder) {
@@ -107,7 +115,9 @@ public class EmojiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             viewHolder.mDeleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO:添加点击事件的回调
+                    if (mEmojiCallback != null) {
+                        mEmojiCallback.onDeleteClick();
+                    }
                 }
             });
         }

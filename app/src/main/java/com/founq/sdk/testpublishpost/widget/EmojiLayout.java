@@ -2,7 +2,6 @@ package com.founq.sdk.testpublishpost.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -18,7 +17,6 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.founq.sdk.testpublishpost.GridSpacingItemDecoration;
-import com.founq.sdk.testpublishpost.MyLayoutManager;
 import com.founq.sdk.testpublishpost.R;
 
 import java.util.ArrayList;
@@ -31,6 +29,8 @@ import java.util.List;
 public class EmojiLayout extends LinearLayout {
 
     private Context mContext;
+
+    private EmojiCallback mEmojiCallback;
 
     //一个viewpager中行数
     private int row;
@@ -71,6 +71,10 @@ public class EmojiLayout extends LinearLayout {
         super(context, attrs, defStyleAttr);
 
         initEmojiLayout(context, attrs, defStyleAttr);
+    }
+
+    public void setEmojiCallback(EmojiCallback emojiCallback) {
+        mEmojiCallback = emojiCallback;
     }
 
     private void initEmojiLayout(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -196,6 +200,7 @@ public class EmojiLayout extends LinearLayout {
             EmojiAdapter adapter = new EmojiAdapter(getContext());
             adapter.setEmojiList(mEmojiList.get(position), column);
             adapter.setTextSize(emojiSize);
+            adapter.setEmojiCallback(mEmojiCallback);
             RecyclerView recyclerView = new RecyclerView(mContext);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new MyLayoutManager(getContext(), column));

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.founq.sdk.testpublishpost.widget.EmojiAdapter;
+import com.founq.sdk.testpublishpost.widget.MyLayoutManager;
 
 import java.util.LinkedList;
 

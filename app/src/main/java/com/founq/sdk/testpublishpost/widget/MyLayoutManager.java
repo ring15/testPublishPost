@@ -1,4 +1,4 @@
-package com.founq.sdk.testpublishpost;
+package com.founq.sdk.testpublishpost.widget;
 
 import android.content.Context;
 
